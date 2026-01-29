@@ -1,0 +1,22 @@
+# Bỏ node_modules trên máy host (vì sẽ được cài mới trong container)
+
+node_modules
+npm-debug.log
+yarn-error.log
+
+# Bỏ các file tạm, cache
+*.log
+*.tmp
+*.swp
+
+# Bỏ thư mục Git và các file cấu hình IDE
+.git
+.gitignore
+.DS_Store
+.vscode
+.idea
+
+# Bỏ các thư mục test, build không cần thiết
+coverage
+dist
+build

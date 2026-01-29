@@ -1,0 +1,60 @@
+
+
+services:
+  api:
+    build: ./server
+    container_name: server
+    ports:
+      - "3000:3000"
+    working_dir: /usr/src/app
+    volumes:
+      - ./server:/usr/src/app
+      - /usr/src/app/node_modules
+    env_file:
+      - ./server/.env
+    command: bash -c "npm install && npm start"
+    depends_on:
+      - mysql
+    networks:
+      - app-network
+
+  mysql:
+    build: ./database
+    container_name: mysql-db
+    restart: always
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: auto_payroll
+      MYSQL_USER: payroll_user
+      MYSQL_PASSWORD: payroll_pass
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    networks:
+      - app-network
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    container_name: phpmyadmin
+    restart: always
+    ports:
+      - "8080:80"
+    environment:
+      PMA_HOST: mysql
+      PMA_PORT: 3306
+      MYSQL_ROOT_PASSWORD: root
+    depends_on:
+      - mysql
+    networks:
+      - app-network
+
+  
+
+volumes:
+  mysql_data:
+
+networks:
+  app-network:
+    driver: bridge

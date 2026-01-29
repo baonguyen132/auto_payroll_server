@@ -1,0 +1,30 @@
+# Environment files
+*.env
+*.env.local
+*.local
+
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+coverage/
+*.tsbuildinfo
+
+# IDE
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+
+# Logs
+*.log
+npm-debug.log
+yarn-error.log
+
+# Security/Certificates
+*.pem
+*.key
+*.crt
+*.p12
