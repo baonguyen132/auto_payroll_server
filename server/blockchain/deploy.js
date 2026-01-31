@@ -12,7 +12,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // Prefer explicit GANACHE_HOST env; fall back to legacy IP env for compatibility
-const ganacheHost = process.env.GANACHE_HOST || process.env.IP || "192.168.1.236";
+const ganacheHost = process.env.GANACHE_HOST || process.env.IP || "192.168.164.142";
 const GANACHE_URL = `http://${ganacheHost}:7545`;
 const CONTRACT_SRC_EMP = path.join(__dirname, "contracts", "EmployeeContract.sol");
 const CONTRACT_SRC_PRODUCT = path.join(__dirname, "contracts", "ProductContract.sol");
