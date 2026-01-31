@@ -78,7 +78,7 @@ const authRouter = express.Router();
  *                   type: string
  *                   example: "Internal server error"
  */
-authRouter.post("/login",loginLimiter ,async (req, res) => {
+authRouter.post("/login", loginLimiter, async (req, res) => {
     // Logic for user login
     const data = JSON.parse(JSON.stringify(req.body));
     const username = data["username"];

@@ -1,13 +1,13 @@
-const rateLimit = require("express-rate-limit");
+import rateLimit from "express-rate-limit";
 
 const apiLimiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 phút
-  max: 100,                // tối đa 100 request / IP
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100,                // maximum 100 requests per IP
   message: {
     status: 429,
     message: "Too many requests, please try again later"
   },
-  standardHeaders: true,   // trả về RateLimit-* headers
+  standardHeaders: true,   // return RateLimit-* headers
   legacyHeaders: false
 });
 
@@ -17,4 +17,4 @@ const loginLimiter = rateLimit({
     message: "Too many login attempts"
   });
 
-module.exports = { apiLimiter, loginLimiter };
+export { apiLimiter, loginLimiter };
