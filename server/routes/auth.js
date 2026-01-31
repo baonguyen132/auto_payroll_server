@@ -1,6 +1,7 @@
 import express, { json } from "express";
 import connection from "../services/connectDatabase.js";
 import { generateAccessToken } from "../utils/token.js";
+import { loginLimiter } from "../middleware/rateLimiter.js";
 
 const authRouter = express.Router();
 
@@ -77,7 +78,7 @@ const authRouter = express.Router();
  *                   type: string
  *                   example: "Internal server error"
  */
-authRouter.post("/login", async (req, res) => {
+authRouter.post("/login",loginLimiter ,async (req, res) => {
     // Logic for user login
     const data = JSON.parse(JSON.stringify(req.body));
     const username = data["username"];

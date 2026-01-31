@@ -8,6 +8,7 @@ import productRouter from "./routes/product.js";
 import cors from "cors";
 import aiRouter from "./routes/ai.js";
 import imageRouter from "./routes/imageRoute.js";
+import apiLimiter from "./middleware/rateLimiter.js";
 
 const app = express();
 app.use(cors({
@@ -29,13 +30,13 @@ app.use(express.json());
 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
-app.use('/api', cardsRouter);
-app.use('/api', accessLogRouter)
-app.use('/api', employeeRouter);
-app.use('/api', authRouter);
-app.use('/api', aiRouter);
-app.use('/api', productRouter);
-app.use(imageRouter);
+app.use('/api', apiLimiter ,cardsRouter);
+app.use('/api', apiLimiter ,accessLogRouter)
+app.use('/api', apiLimiter ,employeeRouter);
+app.use('/api', apiLimiter ,authRouter);
+app.use('/api', apiLimiter ,aiRouter);
+app.use('/api', apiLimiter ,productRouter);
+app.use(apiLimiter ,imageRouter);
 
 // Run server
 const PORT = 3000;
