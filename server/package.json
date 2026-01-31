@@ -9,7 +9,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node index.js",
-    "deploy": "node ./blockchain/deploy.js"
+    "deploy-contract": "node ./blockchain/deploy.js"
   },
   "dependencies": {
     "@google/genai": "^1.29.0",
@@ -25,6 +25,7 @@
     "solc": "^0.8.17",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^5.0.1",
-    "web3": "^4.16.0"
+    "web3": "^4.16.0",
+    "express-rate-limit": "^8.2.1"
   }
 }
